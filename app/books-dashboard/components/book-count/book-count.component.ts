@@ -5,7 +5,7 @@ import { Book } from '../../models/book.interface';
     selector:'book-count',
     template:`
         <h1>Books Dashboard</h1>
-        <p>Total Books:{{items.length}}</p>
+        <p>Total Books:{{items?.length}}</p>
         <hr/>
     `
 })

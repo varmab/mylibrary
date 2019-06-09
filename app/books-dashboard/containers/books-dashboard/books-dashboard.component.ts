@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book.interface';
+import { BooksDashboardService } from '../../books-dashboard.service'
 
 @Component({
     selector:'books-dashboard',
@@ -16,25 +17,14 @@ import { Book } from '../../models/book.interface';
         </div>
     `
 })
-export class BooksDashboardComponent{
-    books: Book[]=[
-        {
-            id:1,
-            title:'Node Fundamentals',
-            published:14657774,
-            instock:false
-        },
-        {
-            id:2,
-            title:'HTML Fundamentals',
-            published:14657774,
-            instock:false
-        },
-        {
-            id:3,
-            title:'JS Fundamentals',
-            published:14657774,
-            instock:true
-        }
-    ]
+export class BooksDashboardComponent implements OnInit{
+    books: Book[];
+
+    constructor(private booksDashboardService:BooksDashboardService){}
+
+    ngOnInit(){
+        this.booksDashboardService
+        .getBooks()
+        .subscribe((data:Book[])=>this.books=data);
+    }
 }
